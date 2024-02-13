@@ -31,6 +31,7 @@ jobs:
     steps:
       - name: Pre-cleanup Workspace
         run: |
+          Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
           Remove-Item -Path "C:\Users\mate0\_work\_temp\*" -Force -Recurse -ErrorAction Continue
         shell: powershell
 
