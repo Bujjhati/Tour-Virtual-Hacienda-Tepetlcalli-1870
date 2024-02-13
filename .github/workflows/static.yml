@@ -26,18 +26,27 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: self-hosted # Updated to use self-hosted runner
+      # Temporarily set a placeholder URL if the dynamic generation isn't functioning as expected
+      url: "https://example.com" # Replace this with your site's URL or remove if not needed
+    runs-on: self-hosted # Ensure the runner is tagged as self-hosted
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      # Assuming bash problem occurs in later steps, explicitly use PowerShell for Windows runner
+      # If bash is required, ensure bash is available on the runner and use `shell: bash` directive
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        shell: pwsh # Use PowerShell for Windows runner
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: '.'
+        shell: pwsh # Use PowerShell for Windows runner
+      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        shell: pwsh # Use PowerShell for Windows runner
+
