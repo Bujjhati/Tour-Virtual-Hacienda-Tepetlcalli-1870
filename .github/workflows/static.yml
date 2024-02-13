@@ -26,10 +26,14 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      # Set a static URL or remove if dynamically generating the URL later in the workflow
-      url: "https://example.com" # Replace with the actual URL or appropriate dynamic reference
+      url: "https://example.com" # Set a static URL or adjust as necessary
     runs-on: self-hosted # Specify that this job runs on a self-hosted runner
     steps:
+      - name: Pre-cleanup Workspace
+        run: |
+          Remove-Item -Path "C:\Users\mate0\_work\_temp\*" -Force -Recurse -ErrorAction Continue
+        shell: pwsh
+
       - name: Checkout
         uses: actions/checkout@v4
       
@@ -44,3 +48,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
