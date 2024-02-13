@@ -27,7 +27,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: runs-on: self-hosted
+    runs-on: self-hosted # Updated to use self-hosted runner
     steps:
       - name: Checkout
         uses: actions/checkout@v4
