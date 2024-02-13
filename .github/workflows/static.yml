@@ -32,7 +32,7 @@ jobs:
       - name: Pre-cleanup Workspace
         run: |
           Remove-Item -Path "C:\Users\mate0\_work\_temp\*" -Force -Recurse -ErrorAction Continue
-        shell: pwsh
+        shell: powershell
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,6 +46,4 @@ jobs:
           path: '.'
       
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
-
